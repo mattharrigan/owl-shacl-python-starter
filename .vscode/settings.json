@@ -1,0 +1,9 @@
+
+{
+  "files.associations": {
+    "*.ttl": "turtle",
+    "*.trig": "trig",
+    "*.rq": "sparql"
+  },
+  "editor.formatOnSave": false
+}

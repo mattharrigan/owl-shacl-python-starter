@@ -1,0 +1,50 @@
+
+name: Ontology CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate example-valid.ttl
+        run: |
+          python scripts/validate.py                 --data data/example-valid.ttl                 --shapes shapes/shapes.ttl                 --ontology ontologies/domain.ttl
+
+      - name: Generate PlantUML (.puml)
+        run: |
+          python scripts/owl_to_puml.py --input ontologies/domain.ttl --output diagrams/domain.puml
+
+      - name: Install Java & Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jre graphviz curl
+
+      - name: Download PlantUML
+        run: |
+          curl -L -o plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2024.8/plantuml-1.2024.8.jar
+
+      - name: Render diagrams to SVG
+        run: |
+          mkdir -p diagrams/out
+          java -jar plantuml.jar -tsvg -o out diagrams/domain.puml
+
+      - name: Upload diagram artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ontology-diagrams
+          path: diagrams/out/*.svg

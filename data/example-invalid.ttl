@@ -1,0 +1,7 @@
+
+@prefix ex: <http://example.com/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# No company declared to exercise range/class checking and missing name
+ex:bob a ex:Employee, ex:Contractor ;
+  ex:worksFor ex:unknownCompany .

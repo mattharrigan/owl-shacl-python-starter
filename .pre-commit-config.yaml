@@ -1,0 +1,31 @@
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: ttl-parse
+        name: RDF/Turtle parse check (rdflib)
+        entry: python scripts/ttl_parse_check.py
+        language: system
+        types: [file]
+        files: \.ttl$
+        pass_filenames: true
+      - id: shacl-validate
+        name: SHACL validate staged data
+        entry: bash -c 'python scripts/validate.py --data "data/*.ttl" --shapes shapes/shapes.ttl --ontology ontologies/domain.ttl'
+        language: system
+        types: [file]
+        files: (ontologies/.*\.ttl|shapes/.*\.ttl|data/.*\.ttl)
+        pass_filenames: false
+      - id: owl-to-plantuml
+        name: Generate PlantUML from OWL/Turtle
+        entry: bash -c 'python scripts/owl_to_puml.py --input ontologies/domain.ttl --output diagrams/domain.puml && git add diagrams/domain.puml && git diff --exit-code -- diagrams/domain.puml || (echo "[DIAGRAM] Regenerated PlantUML. Please review and re-commit."; exit 1)'
+        language: system
+        types: [file]
+        files: (ontologies/.*\.ttl)
+        pass_filenames: false

@@ -1,0 +1,35 @@
+
+@prefix ex: <http://example.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Person a owl:Class .
+
+ex:Employee a owl:Class ;
+  rdfs:subClassOf ex:Person , [
+    a owl:Restriction ;
+    owl:onProperty ex:worksFor ;
+    owl:minCardinality 1 ;
+    owl:maxCardinality 1 ;
+    owl:allValuesFrom ex:Company
+  ] .
+
+ex:Contractor a owl:Class ;
+  rdfs:subClassOf ex:Person .
+
+# Disjointness between Employee and Contractor
+ex:Employee owl:disjointWith ex:Contractor .
+
+ex:Company a owl:Class .
+
+# Datatype property for names
+ex:name a owl:DatatypeProperty ;
+  rdfs:domain ex:Person ;
+  rdfs:range xsd:string .
+
+# Object property worksFor
+ex:worksFor a owl:ObjectProperty ;
+  rdfs:domain ex:Employee ;
+  rdfs:range ex:Company .

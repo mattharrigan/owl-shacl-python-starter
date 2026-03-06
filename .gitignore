@@ -1,0 +1,15 @@
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Builds & reports
+build/
+
+# VS Code
+.vscode/*.code-workspace
+
+# Rendered diagrams (CI artifacts)
+diagrams/out/

@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Validate: example-valid",
+      "type": "shell",
+      "command": "python scripts/validate.py --data data/example-valid.ttl --shapes shapes/shapes.ttl --ontology ontologies/domain.ttl",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Validate: all data",
+      "type": "shell",
+      "command": "python scripts/validate.py --data 'data/*.ttl' --shapes shapes/shapes.ttl --ontology ontologies/domain.ttl",
+      "problemMatcher": []
+    },
+    {
+      "label": "Format RDF (NT-sort)",
+      "type": "shell",
+      "command": "python scripts/format_rdf.py ontologies/*.ttl shapes/*.ttl data/*.ttl",
+      "problemMatcher": []
+    },
+    {
+      "label": "Diagrams: generate (PlantUML)",
+      "type": "shell",
+      "command": "python scripts/owl_to_puml.py --input ontologies/domain.ttl --output diagrams/domain.puml",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+
+pyshacl==0.24.0
+rdflib==7.0.0
+pre-commit==3.7.0

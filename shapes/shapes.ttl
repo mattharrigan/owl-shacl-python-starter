@@ -1,0 +1,30 @@
+
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.com/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Employee must have exactly one worksFor to a Company and a name
+ex:EmployeeShape a sh:NodeShape ;
+  sh:targetClass ex:Employee ;
+  sh:property [
+    sh:path ex:worksFor ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class ex:Company ;
+  ] ;
+  sh:property [
+    sh:path ex:name ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] .
+
+# Optional: Forbid Employees also being typed as Contractor (mirrors OWL disjointness)
+ex:EmployeeNotContractor a sh:NodeShape ;
+  sh:targetClass ex:Employee ;
+  sh:not [
+    sh:property [
+      sh:path rdf:type ;
+      sh:hasValue ex:Contractor ;
+    ]
+  ] .
