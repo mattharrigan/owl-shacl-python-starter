@@ -182,7 +182,7 @@ def parse(input_paths, output_path):
     for pair in sorted(disjoints, key=lambda s: sorted([short(x) for x in s])):
         a, b = list(pair)
         nid = f"N{idx}"
-        lines.append(f"note "{short(a)} ⟂ {short(b)}" as {nid}")
+        lines.append(f"note \"{short(a)} ⟂ {short(b)}\" as {nid}")
         lines.append(f"{short(a)} .. {nid}")
         lines.append(f"{short(b)} .. {nid}")
         idx += 1
@@ -191,8 +191,7 @@ def parse(input_paths, output_path):
 
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text("
-".join(lines), encoding="utf-8")
+    out.write_text("\n".join(lines), encoding="utf-8")
 
 
 if __name__ == "__main__":
