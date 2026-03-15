@@ -65,6 +65,10 @@ The script `scripts/owl_to_puml.py` maps:
 
 In CI, we also render **SVG** with PlantUML and upload as artifacts.
 
+**Latest UML diagram (SVG, CI-generated):**
+
+- [domain.svg (rendered in CI, see GitHub Actions Artifacts)](https://github.com/mattharrigan/owl-shacl-python-starter/actions?query=workflow%3A%22Ontology+CI%22)
+
 ## Pre-commit hooks
 
 ```bash
