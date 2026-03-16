@@ -33,3 +33,43 @@ ex:name a owl:DatatypeProperty ;
 ex:worksFor a owl:ObjectProperty ;
   rdfs:domain ex:Employee ;
   rdfs:range ex:Company .
+
+# Requirement class
+ex:Requirement a owl:Class .
+
+# Requirement is disjoint with all other classes
+ex:Requirement owl:disjointWith ex:Person, ex:Employee, ex:Contractor, ex:Company .
+
+# derivedReq object property (Requirement -> Requirement, parent direction)
+ex:derivedReq a owl:ObjectProperty ;
+  rdfs:domain ex:Requirement ;
+  rdfs:range ex:Requirement ;
+  rdfs:label "derivedReq" ;
+  rdfs:comment "Points to the parent requirement from a derived requirement. At most 1 parent." .
+
+# Requirement attributes
+ex:text a owl:DatatypeProperty ;
+  rdfs:domain ex:Requirement ;
+  rdfs:range xsd:string .
+
+ex:Id a owl:DatatypeProperty ;
+  rdfs:domain ex:Requirement ;
+  rdfs:range xsd:string .
+
+# ConceptualElement class
+ex:ConceptualElement a owl:Class .
+
+# ConceptualElement is disjoint with all other classes
+ex:ConceptualElement owl:disjointWith ex:Person, ex:Employee, ex:Contractor, ex:Company, ex:Requirement .
+
+# association object property (ConceptualElement -> ConceptualElement, parent direction)
+ex:association a owl:ObjectProperty ;
+  rdfs:domain ex:ConceptualElement ;
+  rdfs:range ex:ConceptualElement ;
+  rdfs:label "association" ;
+  rdfs:comment "Points to the parent ConceptualElement. At most 1 parent." .
+
+# ConceptualElement attribute
+ex:Name a owl:DatatypeProperty ;
+  rdfs:domain ex:ConceptualElement ;
+  rdfs:range xsd:string .

@@ -1,0 +1,57 @@
+@startuml
+hide empty members
+skinparam classAttributeIconSize 0
+title Ontology Class Diagram
+class Company {
+}
+class ConceptualElement {
+  Name : string
+}
+class Contractor {
+}
+class Employee {
+}
+class Person {
+  name : string
+}
+class Requirement {
+  Id : string
+  text : string
+}
+Employee --|> Person
+Contractor --|> Person
+Employee -- "1" Company : worksFor
+Requirement -- "*" Requirement : derivedReq
+ConceptualElement -- "*" ConceptualElement : association
+Employee -- "1" Company : worksFor
+note "ConceptualElement ⟂ Company" as N1
+ConceptualElement .. N1
+Company .. N1
+note "Requirement ⟂ Company" as N2
+Requirement .. N2
+Company .. N2
+note "ConceptualElement ⟂ Contractor" as N3
+ConceptualElement .. N3
+Contractor .. N3
+note "ConceptualElement ⟂ Employee" as N4
+ConceptualElement .. N4
+Employee .. N4
+note "ConceptualElement ⟂ Person" as N5
+ConceptualElement .. N5
+Person .. N5
+note "ConceptualElement ⟂ Requirement" as N6
+ConceptualElement .. N6
+Requirement .. N6
+note "Contractor ⟂ Employee" as N7
+Contractor .. N7
+Employee .. N7
+note "Requirement ⟂ Contractor" as N8
+Requirement .. N8
+Contractor .. N8
+note "Requirement ⟂ Employee" as N9
+Requirement .. N9
+Employee .. N9
+note "Requirement ⟂ Person" as N10
+Requirement .. N10
+Person .. N10
+@enduml

@@ -28,3 +28,36 @@ ex:EmployeeNotContractor a sh:NodeShape ;
       sh:hasValue ex:Contractor ;
     ]
   ] .
+
+# Requirement shape
+ex:RequirementShape a sh:NodeShape ;
+  sh:targetClass ex:Requirement ;
+  sh:property [
+    sh:path ex:text ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path ex:Id ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path ex:derivedReq ;
+    sh:class ex:Requirement ;
+    sh:maxCount 1 ;
+  ] .
+
+# ConceptualElement shape
+ex:ConceptualElementShape a sh:NodeShape ;
+  sh:targetClass ex:ConceptualElement ;
+  sh:property [
+    sh:path ex:Name ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path ex:association ;
+    sh:class ex:ConceptualElement ;
+    sh:maxCount 1 ;
+  ] .
