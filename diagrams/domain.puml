@@ -23,35 +23,36 @@ Contractor --|> Person
 Employee -- "1" Company : worksFor
 Requirement -- "*" Requirement : derivedReq
 ConceptualElement -- "*" ConceptualElement : association
+Requirement -- "*" ConceptualElement : satisfy
 Employee -- "1" Company : worksFor
-note "ConceptualElement ⟂ Company" as N1
-ConceptualElement .. N1
+note "Company ⟂ ConceptualElement" as N1
 Company .. N1
-note "Requirement ⟂ Company" as N2
-Requirement .. N2
+ConceptualElement .. N1
+note "Company ⟂ Requirement" as N2
 Company .. N2
-note "ConceptualElement ⟂ Contractor" as N3
-ConceptualElement .. N3
+Requirement .. N2
+note "Contractor ⟂ ConceptualElement" as N3
 Contractor .. N3
-note "ConceptualElement ⟂ Employee" as N4
-ConceptualElement .. N4
+ConceptualElement .. N3
+note "Employee ⟂ ConceptualElement" as N4
 Employee .. N4
-note "ConceptualElement ⟂ Person" as N5
-ConceptualElement .. N5
+ConceptualElement .. N4
+note "Person ⟂ ConceptualElement" as N5
 Person .. N5
-note "ConceptualElement ⟂ Requirement" as N6
-ConceptualElement .. N6
+ConceptualElement .. N5
+note "Requirement ⟂ ConceptualElement" as N6
 Requirement .. N6
-note "Contractor ⟂ Employee" as N7
-Contractor .. N7
+ConceptualElement .. N6
+note "Employee ⟂ Contractor" as N7
 Employee .. N7
-note "Requirement ⟂ Contractor" as N8
-Requirement .. N8
+Contractor .. N7
+note "Contractor ⟂ Requirement" as N8
 Contractor .. N8
-note "Requirement ⟂ Employee" as N9
-Requirement .. N9
+Requirement .. N8
+note "Employee ⟂ Requirement" as N9
 Employee .. N9
-note "Requirement ⟂ Person" as N10
-Requirement .. N10
+Requirement .. N9
+note "Person ⟂ Requirement" as N10
 Person .. N10
+Requirement .. N10
 @enduml

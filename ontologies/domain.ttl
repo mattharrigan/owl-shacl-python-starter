@@ -73,3 +73,10 @@ ex:association a owl:ObjectProperty ;
 ex:Name a owl:DatatypeProperty ;
   rdfs:domain ex:ConceptualElement ;
   rdfs:range xsd:string .
+
+# satisfy object property (Requirement -> ConceptualElement)
+ex:satisfy a owl:ObjectProperty ;
+  rdfs:domain ex:Requirement ;
+  rdfs:range ex:ConceptualElement ;
+  rdfs:label "satisfy" ;
+  rdfs:comment "Links a Requirement to the ConceptualElement that satisfies it." .

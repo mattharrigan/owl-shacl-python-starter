@@ -61,3 +61,10 @@ ex:ConceptualElementShape a sh:NodeShape ;
     sh:class ex:ConceptualElement ;
     sh:maxCount 1 ;
   ] .
+
+# Add satisfy property to Requirement shape
+ex:RequirementShape sh:property [
+  sh:path ex:satisfy ;
+  sh:class ex:ConceptualElement ;
+  sh:minCount 0 ;
+] .
